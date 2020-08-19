@@ -19,7 +19,6 @@ Manages the interaction between the tool and unity editor. Allows for undo/redo,
 ## Bezier curves
 
 In order to create a bezier curve we will use the Linear Interpolation, the Quadratic Curves and the Cubic Curves.
-![Imgur](https://imgur.com/a/pRdPDwR)
 
 ### Linear Interpolation
 
