@@ -37,3 +37,15 @@ The Quadratic curve formed by 3 points a, b and c will return the curve formed b
 The Cubic curve formed by 4 points a, b, c and d will return the curve formed between the points that forme a Quadratic Curve between the a, b and c and b, c and d.
 
 ```Vector2 CubicCurve(Vector2 a, Vector2 b, Vector2 c, float time)```
+
+
+## Funcionalities
+
+### Add and Remove points in scene
+Add points to a curve in the unity editor using shift+click
+
+### Auto close curve
+Bezier curve can be auto-closed by toggling a editor button
+
+### Auto compute control points
+Toggle funcionality that allows unity to compute the anchor point by the half point of the distance between each anchor
