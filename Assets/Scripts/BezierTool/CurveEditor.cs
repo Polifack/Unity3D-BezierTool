@@ -10,6 +10,26 @@ public class CurveEditor : Editor
     CurveCreator creator;
     Curve curve;
 
+    public override void OnInspectorGUI()
+    {
+        // Edit the GUI editor
+
+        base.OnInspectorGUI();
+
+        if (GUILayout.Button("CreatePath"))
+        {
+            creator.CreateCurve();
+            curve = creator.curve;
+            SceneView.RepaintAll();
+        }
+
+        if (GUILayout.Button("ToggleClosed"))
+        {
+            curve.ToggleClosed();
+            SceneView.RepaintAll();
+        }
+    }
+
     private void OnEnable()
     {
         // Cast the editor target as a path creator.
