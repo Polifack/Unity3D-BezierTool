@@ -16,16 +16,31 @@ public class CurveEditor : Editor
 
         base.OnInspectorGUI();
 
+        // Start a change check in order to update the scene view when something changes
+        EditorGUI.BeginChangeCheck();
+
         if (GUILayout.Button("CreatePath"))
         {
+            Undo.RecordObject(creator, "Create path");
             creator.CreateCurve();
             curve = creator.curve;
-            SceneView.RepaintAll();
         }
 
         if (GUILayout.Button("ToggleClosed"))
         {
+            Undo.RecordObject(creator, "Toggle close path");
             curve.ToggleClosed();
+        }
+
+        bool autoSetControlPoints = GUILayout.Toggle(curve.AutoSetControlPoints, "Auto Set Control Points");
+        if (autoSetControlPoints != curve.AutoSetControlPoints)
+        {
+            Undo.RecordObject(creator, "Toggle Auto Set Control Points");
+            curve.AutoSetControlPoints = autoSetControlPoints;
+        }
+
+        if (EditorGUI.EndChangeCheck())
+        {
             SceneView.RepaintAll();
         }
     }
