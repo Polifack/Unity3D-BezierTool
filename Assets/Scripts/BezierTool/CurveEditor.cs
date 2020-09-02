@@ -113,6 +113,29 @@ public class CurveEditor : Editor
             Undo.RecordObject(creator, "Add point");
             curve.AddSegment(mousePos);
         }
+
+        // Check if we are pressing the right mouse button in order to delete
+        if (e.type == EventType.MouseDown && e.button == 1)
+        {
+            float minDistToAnchor = 0.05f;
+            int closestAnchor = -1;
+
+            // Iterate over all points to see what is the closest one to mouse position
+            for (int i = 0; i < curve.NumPoints; i += 3)
+            {
+                float dst = Vector2.Distance(mousePos, curve[i]);
+                if (dst < minDistToAnchor)
+                {
+                    minDistToAnchor = dst;
+                    closestAnchor = i;
+                }
+            }
+            if (closestAnchor != -1)
+            {
+                Undo.RecordObject(creator, "Delete Point");
+                curve.DeleteSegment(closestAnchor);
+            }
+        }
     }
 
 }
